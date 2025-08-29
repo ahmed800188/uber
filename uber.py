@@ -20,6 +20,19 @@ st.markdown(f"""
     </div>
 """, unsafe_allow_html=True)
 
+# Useful insights for users
+with st.expander('📊 Useful Insights for Users', expanded=True):
+    st.markdown(f"""
+    <ul style='font-size:18px;'>
+        <li><b>Peak Booking Times:</b> Discover when most rides are booked and plan accordingly.</li>
+        <li><b>Popular Vehicle Types:</b> See which vehicle types are most preferred by customers.</li>
+        <li><b>Cancellation Trends:</b> Track cancellation reasons and reduce ride failures.</li>
+        <li><b>Ride Distance Patterns:</b> Analyze average ride distances to optimize driver allocation.</li>
+        <li><b>Monthly Growth:</b> Monitor monthly ride trends to identify growth opportunities.</li>
+        <li><b>Customer & Driver Ratings:</b> Review average ratings to improve service quality.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+
 # Read the CSV file
 csv_path = 'ncr_ride_bookings.csv'
 df = pd.read_csv(csv_path)
@@ -63,7 +76,7 @@ with st.sidebar:
 
 filtered_df = df[df['Vehicle Type'].isin(vehicle_types) & df['Booking Status'].isin(status_types)]
 
-st.markdown(f"<style>body {{background-color: {UBER_WHITE}; color: {UBER_BLACK};}} .stApp {{background-color: {UBER_WHITE};}} .stSidebar {{background-color: {UBER_GRAY};}} </style>", unsafe_allow_html=True)
+st.markdown(f"<style>body {{background-color: {UBER_BLACK}; color: {UBER_WHITE};}} .stApp {{background-color: {UBER_BLACK}; color: {UBER_WHITE};}} .stSidebar {{background-color: {UBER_GRAY}; color: {UBER_BLACK};}} .css-1d391kg, .css-1v0mbdj, .css-1c7y2kd, .css-1lcbmhc, .css-1y4p8pa, .css-1v3fvcr, .css-1n76uvr, .stMarkdown.sidebar-content {{color: {UBER_BLACK} !important;}} </style>", unsafe_allow_html=True)
 
 if page == 'Key Metrics':
     st.markdown(f"<h2 style='color:{UBER_ORANGE};'>Key Metrics</h2>", unsafe_allow_html=True)
@@ -213,3 +226,4 @@ elif page == 'Monthly Trends':
 elif page == 'Raw Data':
     st.markdown(f"<h2 style='color:{UBER_ORANGE};'>Raw Data</h2>", unsafe_allow_html=True)
     st.dataframe(filtered_df.head(100), height=600)
+
